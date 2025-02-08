@@ -1,0 +1,297 @@
+/* Displays for HTML 5 */
+article, aside, audio, command, datagrid, details, dialog, embed,
+figcaption, figure, footer, header, hgroup, menu, nav, section, summary,
+video, wbr {
+  display: block;
+}
+
+bdi, figcaption, keygen, mark, meter, progress, rp, rt, ruby, time {
+  display: inline;
+}
+
+/* Deprecated tags */
+acronym, applet, big, center, dir, font, frame, frameset, noframes, s,
+strike, tt, u, xmp {
+  display: none;
+}
+
+/* Reset styles for all structural tags */
+a, abbr, area, article, aside, audio, b, bdo, blockquote, body, button,
+canvas, caption, cite, code, col, colgroup, command, datalist, dd, del,
+details, dialog, dfn, div, dl, dt, em, embed, fieldset, figure, form,
+h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html, i, iframe, img,
+input, ins, keygen, kbd, label, legend, li, map, mark, menu, meter, nav,
+noscript, object, ol, optgroup, option, output, p, param, pre, progress,
+q, rp, rt, ruby, samp, section, select, small, span, strong, sub, sup,
+table, tbody, td, textarea, tfoot, th, thead, time, tr, ul, var, video {
+  background: transparent;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+  vertical-align: baseline;
+  z-index: 1;
+}
+
+/* Miscellaneous resets */
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+:root {
+  --blur: 150px;
+}
+@media screen and (max-width: 768px) {
+  :root {
+    --blur: 80px;
+  }
+}
+
+.wrap_site {
+  padding-top: 1px;
+  position: relative;
+}
+
+.wrap_bg {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  transform: translate3d(0, 0, 0);
+}
+
+.color_wrap {
+  opacity: 0.2;
+  will-change: opacity;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+@media screen and (max-width: 768px) {
+  .color_wrap {
+    opacity: 0.25;
+  }
+}
+
+.color_item {
+  content: "";
+  width: 40vw;
+  height: 40vw;
+  position: absolute;
+  filter: blur(var(--blur));
+  border-radius: 100%;
+}
+.color_item.color_blue {
+  background-color: #0089cd;
+  left: -5%;
+  top: 33%;
+  transform: translate(0, -50%);
+}
+@media screen and (max-width: 768px) {
+  .color_item.color_blue {
+    top: 15%;
+    left: -50%;
+  }
+}
+.color_item.color_pink {
+  background-color: #ff7bac;
+  left: 50%;
+  bottom: -5%;
+  transform: translate(-50%, 0);
+}
+@media screen and (max-width: 768px) {
+  .color_item.color_pink {
+    bottom: -25%;
+  }
+}
+.color_item.color_gold {
+  background-color: #c99765;
+  right: -5%;
+  top: -5%;
+}
+@media screen and (max-width: 768px) {
+  .color_item.color_gold {
+    top: 15%;
+    right: -25%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .color_item {
+    height: 100vw;
+    width: 100vw;
+  }
+}
+
+.logo_bg {
+  position: absolute;
+  width: 75vw;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+body {
+  line-height: 2;
+  font-size: 16px;
+  font-family: "Noto Sans JP", noto-sans, sans-serif;
+}
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 13px;
+  }
+}
+
+.en {
+  font-family: "Jost", sans-serif;
+}
+
+h1 {
+  font-size: 165%;
+}
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 133%;
+  }
+}
+h1 .jp {
+  font-size: 200%;
+  font-weight: 700;
+  margin-bottom: -0.5rem;
+}
+h1 .en {
+  letter-spacing: 0.9em;
+  text-transform: uppercase;
+  font-size: 75%;
+}
+
+.lead {
+  font-size: 100%;
+  margin: 2.5rem 0;
+}
+
+div {
+  font-size: 110%;
+}
+
+.wrap_big {
+  max-width: 90%;
+  width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  align-content: center;
+  padding: 0 5%;
+  margin-top: 15vh;
+  margin-top: 15svh;
+  margin-bottom: 15vh;
+  margin-bottom: 15svh;
+  box-sizing: border-box;
+}
+.wrap_big div, .wrap_big p {
+  text-align: center;
+}
+.wrap_big h1 div {
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .wrap_big div, .wrap_big p {
+    text-align: left;
+  }
+}
+
+.grid {
+  --col: 10;
+  display: grid;
+  grid-template-columns: repeat(var(--col), 1fr);
+  row-gap: 2rem;
+  -moz-column-gap: 3%;
+       column-gap: 3%;
+  padding-bottom: 1rem;
+  letter-spacing: 0.025em;
+  font-size: 100%;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid black;
+}
+@media screen and (max-width: 768px) {
+  .grid {
+    font-size: 110%;
+    row-gap: 0.5rem;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+.grid h2 {
+  font-weight: 700;
+  grid-column: 1/span var(--col);
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid black;
+}
+@media screen and (max-width: 768px) {
+  .grid h2 {
+    padding-bottom: 2rem;
+    border-bottom: none;
+  }
+}
+.grid dt, .grid dd {
+  padding: 0.25rem;
+  font-size: 100%;
+}
+@media screen and (max-width: 768px) {
+  .grid dt, .grid dd {
+    padding: 0;
+  }
+}
+.grid div {
+  font-size: 100%;
+}
+.grid dt {
+  grid-column: 1/span 2;
+  font-weight: 700;
+  box-shadow: 0 0 0 1px black;
+  text-align: center;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 1rem;
+}
+@media screen and (max-width: 768px) {
+  .grid dt {
+    grid-column: 1/span 3;
+    font-size: 80%;
+  }
+}
+.grid dd {
+  grid-column: 3/span calc(var(--col) - 2);
+}
+@media screen and (max-width: 768px) {
+  .grid dd {
+    grid-column: 1/span var(--col);
+    padding-bottom: 1.5rem;
+  }
+}
+.grid div {
+  text-align: left;
+}/*# sourceMappingURL=style.css.map */
