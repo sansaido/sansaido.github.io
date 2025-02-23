@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Marcellus&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+    /* COLORS */
+    --color-*: initial; /*overwrites tailwind colors*/
+    --color-white: #fff;
+    
+    --color-black-fb:#1a1a1a;
+    --color-black:oklch(21.78% 0 0);
+
+    --color-grey: #e6e6e6;
+
+    --color-red-fb: #ca3c5c;
+    --color-red:oklch(57.19% 0.1783 11.7);
+
+    --color-red-dark-fb: #ab0c41;
+    --color-red-dark: oklch(47.67% 0.1845 11.7);
+
+    --color-red-light-fb: #cb606e;
+    --color-red-light: oklch(62.24% 0.1362 13.76);
+
+    --color-blue-lt-fb: #9feaf7;
+    --color-blue-lt: oklch(89.25% 0.0759 209.5);
+
+    --color-blue-fb: #006289;
+    --color-blue: oklch(46.8% 0.098665 234.5511);
+
+    --color-purple-fb:#6100cf;
+    --color-purple1:oklch(44.46% 0.2536 292.01);
+    
+    /* FONTS */
+    --font-sans: "Noto Sans JP", sans-serif, system-default;
+    --font-en: Jost, 'Noto Sans JP', sans-serif, system-default;
+    --font-display: Marcellus, Serif, system-default;
+    --font-serif: 'Noto Serif JP', serif, system-default;
+}
+
+@theme inline {
+    --background-image-radial-red: radial-gradient(circle at 15% -34%, var(--color-red-light), var(--color-red-dark));
+
+}
+
+body {
+    color: var(--color-black-fb);
+    color: var(--color-black);    
+    /* background-color: rgba(205,255,235); */
+}

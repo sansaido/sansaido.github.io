@@ -1,0 +1,61 @@
+---
+interface Props {
+    variant: "red" | "clear",
+    title: {
+        en: string,
+        ja: string,
+    },
+    text: string,
+    url: URL
+}
+
+const {variant, title, text, url} = Astro.props
+const getVariantClasses = (variant: string) => {
+    if(variant === "red") {
+        return ["bg-radial-red", "text-white", "ring", "ring-red"]
+    } else if(variant === "clear") {
+        return ["bg-transparent", "text-red", "ring", "ring-red"]
+    } else {
+        return [""]
+    }
+}
+const variantClasses = getVariantClasses(variant)
+
+const getSvgClasses = (variant: string) => {
+    if(variant === "red") {
+        return ["ring-white"]
+    } else if(variant === "clear") {
+        return ["ring-red"]
+    } else {
+        return [""]
+    }
+}
+const svgClasses = getSvgClasses(variant)
+
+const getPolygonClasses = (variant: string) => {
+    if(variant === "red") {
+        return ["fill-white"]
+    } else if(variant === "clear") {
+        return ["fill-red"]
+    } else {
+        return [""]
+    }
+}
+const polygonClasses = getPolygonClasses(variant)
+
+---
+<a href={url.href}>
+    <div class:list={ [variantClasses, ["py-10 px-12", "rounded-4xl", "flex flex-col gap-8"]] }>
+        <div class="bg-red text-white text-sm tracking-wider font-en uppercase w-fit px-4 py-1 rounded-full" set:html={title.en}/>
+        <h3 class="font-serif text-4xl tracking-wider" set:html={title.ja}/>
+        <div class="flex gap-10 pt-4">
+            <p class="leading-6">ご注文・お問い合わせ・ご連絡の際に専用のお問い合わせフォーム<span class="text-xs">（Google Form）</span>をご利用ください。</p>
+            <svg class:list={["size-24 shrink-0 rounded-2xl p-10 ring", svgClasses]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.6 6.68">
+                <polygon class:list={[polygonClasses]} points="16.6 3.34 10.71 0 10.71 2.84 0 2.84 0 3.84 10.71 3.84 10.71 6.68 16.6 3.34"/>
+            </svg>
+        </div>
+    </div>
+</a>
+
+<style>
+</style>

@@ -1,11 +1,108 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import MediumWrapper from '../components/wrappers/MediumWrapper.astro'
+import PanelTitle from '../components/PanelTitle.astro';
+import CardContact from '../components/links/CardContact.astro';
+import TableItem from '../components/TableItem.astro';
+import iconEnvelope from '../assets/images/icon--envelope.svg';
+import iconPalette from '../assets/images/icon--palette.svg';
+import iconHash from '../assets/images/icon--hash.svg';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const formSchool = new URL("https://docs.google.com/forms/d/e/1FAIpQLSe_13cLW7yirNW8G6qcKeLKfcOXMPDbEiLIkPzG79CtcEEJxw/viewform?usp=preview")
+const formGeneral = new URL("https://docs.google.com/forms/d/e/1FAIpQLSenm_2K1KZl4uuTpuYF4gvnj54YWlULKXAIPCPBdgg4ohfCDA/viewform?usp=dialog")
+const urlGoogleMap = new URL("https://maps.app.goo.gl/1Wm3EFT13H6DAtvk7")
+
+const titleIcons= {
+	contact: iconEnvelope,
+	about: iconPalette,
+	news: iconHash
+}
+
 ---
 
 <Layout>
-	<Welcome />
+	<MediumWrapper element='section'>
+		<PanelTitle
+			direction={"vertical"}
+			title={{
+				en: "Contact",
+				ja: "お問い合わせ"
+			}},
+			icon={titleIcons.contact},
+			alt="封筒のアイコン"
+		/>
+		<div class="grid sm:grid-cols-2 gap-5">			
+			<CardContact
+				variant={'red'}
+				title={{
+					en:"FOR SCHOOLS",
+					ja:"学校園関係者専用"
+				}},
+				text={'ご注文・お問い合わせ・ご連絡の際に専用のお問い合わせフォーム<span class="text-xs">（Google Form）</span>をご利用ください。'}
+				url={formSchool}
+				
+			/>
+			<CardContact
+				variant={'clear'}
+				title={{
+					en:"General Inquiry",
+					ja:"一般のお客様"
+				}}
+				text="当店へのお問い合わせはこちらから"
+				url={formGeneral}			
+			/>
+		</div>
+	</MediumWrapper>
+
+	<MediumWrapper element='section'>
+		<div class="bg-white rounded-2xl py-6 px-2 sm:py-12 sm:px-24 flex flex-col gap-6 sm:gap-12">
+			<PanelTitle
+				direction={"horizontal"}
+				title={{
+					en: "About Us",
+					ja: "会社情報"
+				}},
+				icon={titleIcons.about},
+				alt="パレット (絵画)のアイコン"
+			/>
+			<div class="flex flex-col gap-8 sm:gap-12">
+				<TableItem
+					label={"所在地"},
+					content={`〒714-0081岡山県笠岡市笠岡2996　<a href={urlGoogleMap} class="text-red">Google Mapリンク</a><br>※駐車場完備`}
+					className={"border-grey border-b-1"}
+				/>
+				
+				<TableItem
+					label={"電話番号"},
+					content={`<a href='tel:0865-62-3414' class="text-red">0865-62-3414</a>`}
+					className={`border-grey border-b-1 `}
+				/>
+				<TableItem
+					label={"FAX番号"},
+					content={`0865-63-5472`}
+					className={`border-grey border-b-1 `}
+				/>
+				
+				<TableItem label={'営業時間'}>
+					<div class="flex flex-col gap-0">
+						<TableItem label={'平 日'} color="blue" paddingBottom={4}>９時～１８時</TableItem>
+						<TableItem label={'土曜日'} color="blue" paddingBottom={4}>10時～16時</TableItem>
+						<TableItem label={'店休日'} color="grey" paddingBottom={0}>毎週日曜・祝日</TableItem>
+					</div>
+				</TableItem>
+			</div>
+		</div>
+	</MediumWrapper>
+
+	<!-- <MediumWrapper>
+		<PanelTitle
+			direction={"vertical"}
+			title={{
+				en: "Latest",
+				ja: "新着情報"
+			}},
+			icon={titleIcons.news},
+			alt="ハッシュタグのアイコン"
+		/>
+	</MediumWrapper> -->	
 </Layout>

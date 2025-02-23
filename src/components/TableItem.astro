@@ -1,0 +1,42 @@
+---
+interface Props {
+    label: string,
+    content?: string,
+    color?: "red" | "blue" | "grey",
+    className?: string,
+    paddingBottom?: Number
+}
+
+const {label, content, color = "red", className, paddingBottom = 10} = Astro.props
+
+const setColorClasses = (color:string) => {
+    if(color === "red") {
+        return "bg-red text-white"
+    } else if (color=== "blue") {
+        return "bg-blue-lt text-black"
+    } else if (color=== "grey") {
+        return "bg-grey text-black"
+    }
+}
+
+const colorClasses = setColorClasses(color)
+const pbClasses = {
+    4: 'pb-4',
+    10: 'pb-10'
+}
+
+const paddingBottomClass = pbClasses[paddingBottom]
+---
+
+<dl class={`flex items-start gap-4 sm:gap-10 ${paddingBottomClass} ${className && className}`}>
+    <dt
+        class:list={[colorClasses, ["rounded-full height-fit px-4 py-2 min-w-24 flex justify-center"]]}
+        set:html={label}
+    />
+    <dd set:html={content} class="self-center"> 
+        <slot/>
+    </dd>
+</dl>
+
+<style>
+</style>

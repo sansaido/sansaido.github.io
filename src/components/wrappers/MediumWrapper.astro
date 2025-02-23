@@ -1,0 +1,15 @@
+---
+interface Props {
+    element?: string;    
+}
+const {element} = Astro.props
+const Element = element || "div"
+
+---
+<Element class:list={['wrapper--medium', 'w-full', 'max-w-6xl','mx-auto']}>
+    <slot />
+</Element>
+
+<style>
+    
+</style>
