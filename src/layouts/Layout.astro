@@ -3,7 +3,7 @@ import Image from "astro/components/Image.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import logo from "../assets/images/logo--header.svg";
-import background from "../assets/images/background.svg"
+import background from "../assets/images/bg-pattern2.png"
 ---
 <!doctype html>
 <html lang="en">
@@ -15,16 +15,16 @@ import background from "../assets/images/background.svg"
 		<title>岡山県笠岡市にある教材・額縁・画材店 ｜ 株式会社三彩堂</title>
 	</head>
 	<body class="relative">
-		<div class="fixed top-0 left-0 blur-xl">
+		<div class="fixed top-0 right-36">
 			<Image
 				src={background}
 				alt="背景"
-				height="900"
-				width="2200"
-				class:list={"blur-3xl opacity-60 transform -translate-x-52 -translate-y-16"}
+				height="3259"
+				width="2620"
+				class:list={"opacity-30 h-[105vh] w-full max-h-[105vh] object-contain special"}
 			/>
 		</div>
-		<header class="relative z-50 pt-12 pb-4">
+		<header class="relative z-50 pt-12 pb-48">
 			<h1 class="text-center 				
 				w-fit max-w-[90%]
 				mx-auto
@@ -38,12 +38,12 @@ import background from "../assets/images/background.svg"
 					alt="株式会社三彩堂の英語ロゴ、SANSAIDO"
 					width={"505"}
 					height={"65"}
-					class={"mx-auto"}
+					class={"mx-auto w-[82.5vw]"}
 				/>
-				<span class="tracking-widest text-sm">岡山県笠岡市にある教材・額縁・画材店 ｜ 株式会社三彩堂</span>
+				<span class="tracking-widest pt-2 -mt-16">1951年創業、岡山県笠岡市にある教材・額縁・画材店「三彩堂」</span>
 			</h1>
 		</header>
-		<main class="flex flex-col gap-12 py-12 relative z-10">
+		<main class="flex flex-col gap-16 py-12 relative z-10">
 			<slot />
 		</main>
 		<Footer />	
@@ -62,4 +62,22 @@ import background from "../assets/images/background.svg"
 		margin-left: auto;
 		margin-right: auto;
 	}
+	/* .special {
+		animation-name: animSpecial;
+		animation-duration: 15000ms;
+		animation-iteration-count: infinite;
+		animation-timing-function: ease-in-out;
+	}
+	@keyframes animSpecial {
+		0% {
+			scale: 1;
+		}
+		50% {
+			scale: 1.05;
+		}
+		100% {
+			scale: 1;
+		}
+		
+	} */
 </style>
