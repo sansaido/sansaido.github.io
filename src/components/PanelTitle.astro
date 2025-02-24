@@ -20,20 +20,20 @@ const iconImg = await getImage({
 
 ---
 
-<div class="bg-white rounded-2xl p-4 mx-auto block w-fit">
+<div class=" rounded-2xl py-4 px-8 mx-auto block w-fit mb-6 bg-white">
     <!-- TODO: vertical | horizontal -->
-    <h2 class="flex flex-row gap-4">
+    <h2 class="flex flex-row gap-3 items-center">
         <i>
             <Image
                 src={iconImg.src},
                 alt={alt},
-                height="40",
-                width="40",
+                height="34",
+                width="36",
             />
         </i>
         <div class="flex flex-col">
-            <div class="text-red font-en uppercase">{title.en}</div>
-            <div class="font-serif">{title.ja}</div>
+            <div class="text-red font-en uppercase tracking-widest ">{title.en}</div>
+            <div class="font-serif text-3xl tracking-wider">{title.ja}</div>
         </div>
     </h2>
 </div>

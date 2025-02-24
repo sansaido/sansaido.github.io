@@ -1,0 +1,69 @@
+---
+interface Props {
+    link: URL | string,
+    text: string,
+}
+const {link, text} = Astro.props
+---
+
+<a class="text-red underlinelink" href={link} set:html={text}>
+    <slot/>
+</a>
+
+<style>
+    a {
+        background-image: linear-gradient(to right, var(--color-red) 0%, var(--color-red) 100%);
+        background-position: 100% 100%;
+        background-size: 0% 1.5px;
+        background-repeat: no-repeat;
+        transition: background-size 200ms ease, opacity 200ms ease;
+               
+    }
+    a:hover {
+        background-size: 100% 1.5px;
+        background-position: 0% 100%;
+        opacity: 0.8;
+    }
+    .animate {
+        animation: animLinkAppear 500ms 250ms 1;
+    }
+    @keyframes animLinkAppear {
+        0% {
+            background-position: 0% 100%;
+            background-size: 0% 1.5px;
+        }
+        1% {
+            background-position: 0% 100%;
+            background-size: 0% 1.5px;
+        }
+        40% {                
+            background-position: 0% 100%;
+            background-size: 100% 1.5px;
+        }
+        60% {
+            background-position: 100% 100%;
+            background-size: 100% 1.5px;
+        }
+        100% {
+            background-position: 100% 100%;
+            background-size: 0% 1.5px;
+        }
+    }
+</style>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if(entry.isIntersecting) {
+                console.log(`observing: ${entry}`)
+                entry.target.classList.add('animate');
+                // observer.unobserve(entry);
+
+            }
+        })
+    },{})
+    const links = document.querySelectorAll('.underlinelink')
+    links.forEach((link) => {
+        observer.observe(link)
+    })
+</script>

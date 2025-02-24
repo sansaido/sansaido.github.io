@@ -18,7 +18,7 @@
     --color-red-dark: oklch(47.67% 0.1845 11.7);
 
     --color-red-light-fb: #cb606e;
-    --color-red-light: oklch(62.24% 0.1362 13.76);
+    --color-red-light: oklch(70.24% 0.162 18.76);
 
     --color-blue-lt-fb: #9feaf7;
     --color-blue-lt: oklch(89.25% 0.0759 209.5);
@@ -37,7 +37,8 @@
 }
 
 @theme inline {
-    --background-image-radial-red: radial-gradient(circle at 15% -34%, var(--color-red-light), var(--color-red-dark));
+    --background-image-radial-red: radial-gradient(circle at 15% -34%, var(--color-red-light) 34%, var(--color-red-dark) 85%);
+    /* --background-image-radial-red: radial-gradient(circle at -50% 50%, var(--color-red-dark) 20%, var(--color-red-light) 100%); */
 
 }
 

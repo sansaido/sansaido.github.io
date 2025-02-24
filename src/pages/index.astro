@@ -1,12 +1,15 @@
 ---
+import Image from 'astro/components/Image.astro';
 import Layout from '../layouts/Layout.astro';
 import MediumWrapper from '../components/wrappers/MediumWrapper.astro'
 import PanelTitle from '../components/PanelTitle.astro';
 import CardContact from '../components/links/CardContact.astro';
 import TableItem from '../components/TableItem.astro';
+import UnderlineLink from '../components/links/UnderlineLink.astro';
 import iconEnvelope from '../assets/images/icon--envelope.svg';
 import iconPalette from '../assets/images/icon--palette.svg';
 import iconHash from '../assets/images/icon--hash.svg';
+import imgSansaido from '../assets/images/sansaido-painting.png'
 
 const formSchool = new URL("https://docs.google.com/forms/d/e/1FAIpQLSe_13cLW7yirNW8G6qcKeLKfcOXMPDbEiLIkPzG79CtcEEJxw/viewform?usp=preview")
 const formGeneral = new URL("https://docs.google.com/forms/d/e/1FAIpQLSenm_2K1KZl4uuTpuYF4gvnj54YWlULKXAIPCPBdgg4ohfCDA/viewform?usp=dialog")
@@ -36,9 +39,9 @@ const titleIcons= {
 				variant={'red'}
 				title={{
 					en:"FOR SCHOOLS",
-					ja:"学校園関係者専用"
+					ja:"学校園関係者"
 				}},
-				text={'ご注文・お問い合わせ・ご連絡の際に専用のお問い合わせフォーム<span class="text-xs">（Google Form）</span>をご利用ください。'}
+				text={'ご注文・お問い合わせ・ご連絡の際に学校園関係者専用のお問い合わせフォーム<span class="text-xs">（Google Form）</span>をご利用ください。'}
 				url={formSchool}
 				
 			/>
@@ -48,14 +51,14 @@ const titleIcons= {
 					en:"General Inquiry",
 					ja:"一般のお客様"
 				}}
-				text="当店へのお問い合わせはこちらから"
+				text={"当店へのお問い合わせはこちらから"}
 				url={formGeneral}			
 			/>
 		</div>
 	</MediumWrapper>
 
 	<MediumWrapper element='section'>
-		<div class="bg-white rounded-2xl py-6 px-2 sm:py-12 sm:px-24 flex flex-col gap-6 sm:gap-12">
+		<div class="bg-white rounded-2xl py-6 px-2 sm:py-12 sm:px-38 flex flex-col gap-6 sm:gap-12 shadow-2xl">
 			<PanelTitle
 				direction={"horizontal"}
 				title={{
@@ -65,18 +68,27 @@ const titleIcons= {
 				icon={titleIcons.about},
 				alt="パレット (絵画)のアイコン"
 			/>
-			<div class="flex flex-col gap-8 sm:gap-12">
+			<div class="flex flex-col gap-8 sm:gap-12 relative">
 				<TableItem
-					label={"所在地"},
-					content={`〒714-0081岡山県笠岡市笠岡2996　<a href={urlGoogleMap} class="text-red">Google Mapリンク</a><br>※駐車場完備`}
+					label={"会社名"},
+					content={`株式会社三彩堂`}
 					className={"border-grey border-b-1"}
 				/>
-				
+				<TableItem
+					label={"所在地"},					
+					className={"border-grey border-b-1"}
+				>
+					〒714-0081&nbsp;岡山県笠岡市笠岡2996
+					<UnderlineLink link={urlGoogleMap.href} text="Google Mapリンク" /><br>
+					※駐車場完備
+				</TableItem>
 				<TableItem
 					label={"電話番号"},
-					content={`<a href='tel:0865-62-3414' class="text-red">0865-62-3414</a>`}
 					className={`border-grey border-b-1 `}
-				/>
+				>
+					<UnderlineLink link="tel:0865-62-3414" text="0865-62-3414"/>
+				</TableItem>
+				<!-- content={`<a href='tel:0865-62-3414' class="text-red">0865-62-3414</a>`} -->
 				<TableItem
 					label={"FAX番号"},
 					content={`0865-63-5472`}
@@ -85,11 +97,24 @@ const titleIcons= {
 				
 				<TableItem label={'営業時間'}>
 					<div class="flex flex-col gap-0">
-						<TableItem label={'平 日'} color="blue" paddingBottom={4}>９時～１８時</TableItem>
-						<TableItem label={'土曜日'} color="blue" paddingBottom={4}>10時～16時</TableItem>
+						<TableItem label={'平 日'} color="blue" paddingBottom={4}>9時&nbsp;～&nbsp;18時</TableItem>
+						<TableItem label={'土曜日'} color="blue" paddingBottom={4}>10時&nbsp;～&nbsp;16時</TableItem>
 						<TableItem label={'店休日'} color="grey" paddingBottom={0}>毎週日曜・祝日</TableItem>
 					</div>
 				</TableItem>
+
+				<!-- <div class="absolute bottom-0 right-[-25px] text-right tracking-wider text">
+					<Image
+						src={imgSansaido}
+						alt="三彩堂"
+						width={752}
+						height={603}
+						class=" h-[400px] w-[475px] object-contain"
+					/>
+					<strong class=" p-2">三彩堂店舗風景</strong>
+					<p class=" w-fit block ml-auto p-2">水彩画（1980年頃）　川上一已先生筆</p>
+				</div> -->
+
 			</div>
 		</div>
 	</MediumWrapper>
