@@ -10,6 +10,8 @@
     --color-black:oklch(21.78% 0 0);
 
     --color-grey: #e6e6e6;
+    --color-grey-dark: #949494;
+    --color-grey-lt: #e6e6e6;
 
     --color-red-fb: #ca3c5c;
     --color-red:oklch(57.19% 0.1783 11.7);
@@ -25,6 +27,10 @@
 
     --color-blue-fb: #006289;
     --color-blue: oklch(46.8% 0.098665 234.5511);
+
+    --color-bronze-fb: #d1a75c;
+    /* --color-bronze: oklch(81.69% 0.0861 55.77); */
+    --color-bronze: oklch(92.14% 0.0461 56.59);
 
     --color-purple-fb:#6100cf;
     --color-purple1:oklch(44.46% 0.2536 292.01);
@@ -47,3 +53,40 @@ body {
     color: var(--color-black);    
     /* background-color: rgba(205,255,235); */
 }
+
+
+@keyframes animArrow {
+    0% {
+        transform: translate3d(0%,0,0);
+        opacity: 1;
+    }
+    49% {
+        transform: translate3d(100%,0,0);
+        opacity: 1;
+    }
+    50% {
+        transform: translate3d(100%,0,0);   
+        opacity: 0;
+    }
+    51% {
+        opacity: 0;
+        transform: translate3d(-100%,0,0);
+    }
+    52% {
+        opacity: 1;
+        transform: translate3d(-100%,0,0);
+    }
+    100% {        
+        opacity: 1;
+        transform: translate3d(0%,0,0);
+    }
+}
+/* <dialog>用 */ 
+::backdrop {
+    background-image: linear-gradient(
+      -45deg,
+      var(--color-grey),
+      var(--color-black)
+    );
+    opacity: 0.55;
+  }

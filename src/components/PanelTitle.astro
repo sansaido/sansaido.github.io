@@ -20,7 +20,7 @@ const iconImg = await getImage({
 
 ---
 
-<div class=" rounded-2xl py-4 px-8 mx-auto block w-fit mb-6 bg-white">
+<div class="paneltitle relative rounded-2xl py-4 px-8 mx-auto block w-fit mb-6 bg-white shadow-lg">
     <!-- TODO: vertical | horizontal -->
     <h2 class="flex flex-row gap-3 items-center">
         <i>
@@ -29,11 +29,31 @@ const iconImg = await getImage({
                 alt={alt},
                 height="34",
                 width="36",
+                class="size-6 md:size-8"
             />
         </i>
         <div class="flex flex-col">
-            <div class="text-red font-en uppercase tracking-widest ">{title.en}</div>
-            <div class="font-serif text-3xl tracking-wider">{title.ja}</div>
+            <div class="text-red font-en uppercase tracking-widest text-xs">{title.en}</div>
+            <div class="font-serif text-md md:text-2xl tracking-wider">{title.ja}</div>
         </div>
     </h2>
 </div>
+
+<script>
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if(entry.isIntersecting) {
+                console.log('tell em baby')
+                observer.unobserve(entry)
+            }
+        })
+    }, {})
+
+    const panelTitles = document.querySelectorAll('.paneltitle')
+    panelTitles.forEach((panelTitle) => {
+        observer.observe(panelTitle)
+    })
+
+
+</script>

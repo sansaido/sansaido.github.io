@@ -2,7 +2,7 @@
 interface Props {
     label: string,
     content?: string,
-    color?: "red" | "blue" | "grey",
+    color?: "red" | "blue" | "grey" | "bronze",
     className?: string,
     paddingBottom?: Number
 }
@@ -16,6 +16,8 @@ const setColorClasses = (color:string) => {
         return "bg-blue-lt text-black"
     } else if (color=== "grey") {
         return "bg-grey text-black"
+    } else if (color=== "bronze") {
+        return "bg-bronze-fb text-white"
     }
 }
 
@@ -28,9 +30,9 @@ const pbClasses = {
 const paddingBottomClass = pbClasses[paddingBottom]
 ---
 
-<dl class={`flex items-start gap-4 sm:gap-10 ${paddingBottomClass} ${className && className}`}>
+<dl class={`flex items-start gap-2 md:gap-6 sm:gap-10 ${paddingBottomClass} ${className && className}`}>
     <dt
-        class:list={[colorClasses, ["rounded-full height-fit px-4 py-2 min-w-24 flex justify-center"]]}
+        class:list={[colorClasses, ["text-sm md:text-lg rounded-full height-fit px-2 md:px-4 py-1 md:py-2 min-w-19 md:min-w-24 flex justify-center"]]}
         set:html={label}
     />
     <dd set:html={content} class="self-center"> 

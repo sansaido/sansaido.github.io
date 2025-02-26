@@ -6,47 +6,69 @@ interface Props {
 const {link, text} = Astro.props
 ---
 
-<a class="text-red underlinelink" href={link} set:html={text}>
+<a class="underlinelink text-red inline-flex w-fit items-center gap-3" href={link}>
+    <span class="span-underlinelink" set:html={text}/>
+    <svg class:list={['size-9 rounded-full p-3 bg-transparent shadow-xl transition-colors duration-200']} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.6 6.68">
+        <polygon class:list={['fill-red transition-colors duration-200']} points="16.6 3.34 10.71 0 10.71 2.84 0 2.84 0 3.84 10.71 3.84 10.71 6.68 16.6 3.34"/>
+    </svg>
     <slot/>
 </a>
 
 <style>
-    a {
-        background-image: linear-gradient(to right, var(--color-red) 0%, var(--color-red) 100%);
+    
+    .span-underlinelink {
+        background-image: linear-gradient(to right, var(--color-red) 0%, var(--color-red) 100%);        
         background-position: 100% 100%;
-        background-size: 0% 1.5px;
+        background-size: 0% 1px;
         background-repeat: no-repeat;
-        transition: background-size 200ms ease, opacity 200ms ease;
-               
+        transition: background-size cubic-bezier(.215,.61,.355,1) 300ms;        
     }
     a:hover {
-        background-size: 100% 1.5px;
-        background-position: 0% 100%;
-        opacity: 0.8;
+        .span-underlinelink {
+            background-size: 100% 1px;
+            background-position: 0% 100%;
+        }        
+        svg {
+            
+            background-color: var(--color-red);
+        }
+        svg polygon {            
+            animation-name: animArrow;   
+            animation-duration: 400ms;
+            animation-iteration-count: 1;
+            animation-fill-mode: both;
+            background-color: blue;
+            fill: var(--color-white);
+        }
+        
     }
     .animate {
-        animation: animLinkAppear 500ms 250ms 1;
+        .span-underlinelink {
+            animation: animLinkAppear 700ms 250ms 1;
+            animation-timing-function: cubic-bezier(.215,.61,.355,1);
+
+        }
     }
     @keyframes animLinkAppear {
         0% {
             background-position: 0% 100%;
-            background-size: 0% 1.5px;
+            background-size: 0% 1px;
         }
         1% {
             background-position: 0% 100%;
-            background-size: 0% 1.5px;
+            background-size: 0% 1px;
         }
-        40% {                
+        20% {                
             background-position: 0% 100%;
-            background-size: 100% 1.5px;
+            background-size: 100% 1px;
         }
-        60% {
+        80% {
             background-position: 100% 100%;
-            background-size: 100% 1.5px;
+            background-size: 100% 1px;
         }
         100% {
             background-position: 100% 100%;
-            background-size: 0% 1.5px;
+            background-size: 0% 1px;
         }
     }
 </style>
@@ -62,8 +84,10 @@ const {link, text} = Astro.props
             }
         })
     },{})
-    const links = document.querySelectorAll('.underlinelink')
-    links.forEach((link) => {
-        observer.observe(link)
-    })
+    const links = document.querySelectorAll('.span-underlinelink')
+    if(links) {
+        links.forEach((link) => {
+            observer.observe(link)
+        })
+    }
 </script>

@@ -15,16 +15,16 @@ import background from "../assets/images/bg-pattern2.png"
 		<title>岡山県笠岡市にある教材・額縁・画材店 ｜ 株式会社三彩堂</title>
 	</head>
 	<body class="relative">
-		<div class="fixed top-0 right-36">
+		<div class="fixed top-[-12.5vh] -right-20 md:right-0 md:top-12">
 			<Image
 				src={background}
 				alt="背景"
 				height="3259"
 				width="2620"
-				class:list={"opacity-30 h-[105vh] w-full max-h-[105vh] object-contain special"}
+				class:list={"h-[105vh] w-full max-h-[105vh] object-contain bg-image"}
 			/>
 		</div>
-		<header class="relative z-50 pt-12 pb-48">
+		<header class="relative z-50 pt-[32.5vh] pb-4">
 			<h1 class="text-center 				
 				w-fit max-w-[90%]
 				mx-auto
@@ -38,12 +38,12 @@ import background from "../assets/images/bg-pattern2.png"
 					alt="株式会社三彩堂の英語ロゴ、SANSAIDO"
 					width={"505"}
 					height={"65"}
-					class={"mx-auto w-[82.5vw]"}
+					class={"mx-auto w-[75vw] md:w-[82.5vw]"}
 				/>
-				<span class="tracking-widest pt-2 -mt-16">1951年創業、岡山県笠岡市にある教材・額縁・画材店「三彩堂」</span>
+				<span class="tracking-wider font-serif pt-2 leading-7 text-sm md:text-lg"><span class="inline-block">1951年創業、</span><span class="inline-block">岡山県笠岡市にある</span><span class="inline-block">教材・額縁・画材店</span><span class="inline-block">「三彩堂」</span></span>
 			</h1>
 		</header>
-		<main class="flex flex-col gap-16 py-12 relative z-10">
+		<main class="flex flex-col gap-16 pt-20 pb-32 relative z-10">
 			<slot />
 		</main>
 		<Footer />	
@@ -62,22 +62,22 @@ import background from "../assets/images/bg-pattern2.png"
 		margin-left: auto;
 		margin-right: auto;
 	}
-	/* .special {
-		animation-name: animSpecial;
-		animation-duration: 15000ms;
-		animation-iteration-count: infinite;
-		animation-timing-function: ease-in-out;
+	.bg-image {
+		animation-name: animLoad;
+		animation-duration: 2500ms;
+		animation-delay: 300ms;
+		animation-iteration-count: 1;		
+		animation-fill-mode: both;
 	}
-	@keyframes animSpecial {
+	@keyframes animLoad {
 		0% {
-			scale: 1;
-		}
-		50% {
-			scale: 1.05;
+			opacity: 0;
+			scale: 0.96;			
 		}
 		100% {
-			scale: 1;
+			opacity: 0.3;
+			scale: 1;			
 		}
 		
-	} */
+	}
 </style>

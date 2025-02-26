@@ -47,17 +47,17 @@ const getPolygonClasses = (variant: string) => {
 const polygonClasses = getPolygonClasses(variant)
 
 ---
-<a href={url.href}>
+<a href={url.href} class="">
     <!--todo: fix shadow -->
-    <div class:list={ [variantClasses, ["py-10 px-12", "rounded-2xl", "flex flex-col gap-6 shadow-2xl"]] }>
-        <div class="bg-red text-white text-sm tracking-wider font-en uppercase w-fit px-4 py-1 rounded-full" set:html={title.en}/>
-        <h3 class="font-serif text-4xl tracking-wider w-fit relative overflow-hidden py-2">
+    <div class:list={ [variantClasses, ["p-8 md:py-10 md:px-12", "rounded-2xl", "flex flex-col gap-2 md:gap-6 shadow-2xl h-full"]] }>
+        <div class="bg-red text-white text-xs md:text-sm tracking-wider font-en uppercase w-fit px-4 py-1 rounded-full" set:html={title.en}/>
+        <h3 class="font-serif text-3xl md:text-4xl tracking-wider w-fit relative overflow-hidden pt-2 md:py-2">
             <span class="relative" set:html={title.ja} />
             <span class="absolute" set:html={title.ja} />
         </h3>
-        <div class="flex gap-10 pt-4 justify-between">
+        <div class="flex flex-col lg:flex-row gap-4 lg:gap-10 pt-4 justify-between">
             <p class="leading-6" set:html={text}/>
-            <svg class:list={["size-24 shrink-0 rounded-2xl p-9 shadow-lg bg-white/20 "]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.6 6.68">
+            <svg class:list={["size-24 w-full md:w-auto shrink-0 rounded-2xl py-11 md:p-11 shadow-lg bg-white/20 "]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.6 6.68">
                 <polygon class:list={[polygonClasses]} points="16.6 3.34 10.71 0 10.71 2.84 0 2.84 0 3.84 10.71 3.84 10.71 6.68 16.6 3.34"/>
             </svg>
         </div>
@@ -66,7 +66,7 @@ const polygonClasses = getPolygonClasses(variant)
 
 <style>
 h3 {  
-  background-image: linear-gradient(to right, var(--color-black) 0%, var(--color-black) 100%);  
+  /* background-image: linear-gradient(to right, var(--color-red-dark) 0%, var(--color-red-dark) 100%);   */
   background-position: 100% 100%;
   background-repeat: no-repeat;
   background-size: 0px 100%;   
@@ -83,7 +83,7 @@ h3 {
     top: 50%;
     left: 0;
     opacity: 0;
-    transform: translate3d(0%, 100%, 0)
+    transform: translate3d(0%, 150%, 0)
   }
 }
 
@@ -99,12 +99,12 @@ a:hover {
     }
     h3 {
         /* background-image: linear-gradient(to right, blue 0%, blue 100%); */
-        /* background-position: 0 calc(100% + 0.03rem);         */
+        /* background-position: 0 calc(100% + 0.03rem); */
         background-size: 100% 100%;   
         background-position: 0% 100%;
-        color: var(--color-white);
+        /* color: var(--color-white); */
         span.relative {
-            transform: translateY(-100%);
+            transform: translateY(-150%);
             opacity: 0;
         }
         span.absolute {
@@ -119,33 +119,6 @@ a:hover {
             animation-iteration-count: 1;
             animation-fill-mode: both;            
         }
-    }
-}
-
-@keyframes animArrow {
-    0% {
-        transform: translate3d(0%,0,0);
-        opacity: 1;
-    }
-    49% {
-        transform: translate3d(100%,0,0);
-        opacity: 1;
-    }
-    50% {
-        transform: translate3d(100%,0,0);   
-        opacity: 0;
-    }
-    51% {
-        opacity: 0;
-        transform: translate3d(-100%,0,0);
-    }
-    52% {
-        opacity: 1;
-        transform: translate3d(-100%,0,0);
-    }
-    100% {        
-        opacity: 1;
-        transform: translate3d(0%,0,0);
     }
 }
 

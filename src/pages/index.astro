@@ -9,7 +9,7 @@ import UnderlineLink from '../components/links/UnderlineLink.astro';
 import iconEnvelope from '../assets/images/icon--envelope.svg';
 import iconPalette from '../assets/images/icon--palette.svg';
 import iconHash from '../assets/images/icon--hash.svg';
-import imgSansaido from '../assets/images/sansaido-painting.png'
+import imgSansaido from '../assets/images/sansaido-watercolor.jpg'
 
 const formSchool = new URL("https://docs.google.com/forms/d/e/1FAIpQLSe_13cLW7yirNW8G6qcKeLKfcOXMPDbEiLIkPzG79CtcEEJxw/viewform?usp=preview")
 const formGeneral = new URL("https://docs.google.com/forms/d/e/1FAIpQLSenm_2K1KZl4uuTpuYF4gvnj54YWlULKXAIPCPBdgg4ohfCDA/viewform?usp=dialog")
@@ -34,7 +34,7 @@ const titleIcons= {
 			icon={titleIcons.contact},
 			alt="封筒のアイコン"
 		/>
-		<div class="grid sm:grid-cols-2 gap-5">			
+		<div class="grid md:grid-cols-2 gap-5">			
 			<CardContact
 				variant={'red'}
 				title={{
@@ -58,7 +58,7 @@ const titleIcons= {
 	</MediumWrapper>
 
 	<MediumWrapper element='section'>
-		<div class="bg-white rounded-2xl py-6 px-2 sm:py-12 sm:px-38 flex flex-col gap-6 sm:gap-12 shadow-2xl">
+		<div class="bg-white rounded-2xl py-6 px-2 md:py-12 md:px-38 flex flex-col gap-6 md:gap-12 shadow-2xl md:text-lg">
 			<PanelTitle
 				direction={"horizontal"}
 				title={{
@@ -78,9 +78,9 @@ const titleIcons= {
 					label={"所在地"},					
 					className={"border-grey border-b-1"}
 				>
-					〒714-0081&nbsp;岡山県笠岡市笠岡2996
+					<span class="mr-4">〒714-0081&nbsp;岡山県笠岡市笠岡2996</span>
 					<UnderlineLink link={urlGoogleMap.href} text="Google Mapリンク" /><br>
-					※駐車場完備
+					<span>※駐車場完備</span>
 				</TableItem>
 				<TableItem
 					label={"電話番号"},
@@ -97,8 +97,8 @@ const titleIcons= {
 				
 				<TableItem label={'営業時間'}>
 					<div class="flex flex-col gap-0">
-						<TableItem label={'平 日'} color="blue" paddingBottom={4}>9時&nbsp;～&nbsp;18時</TableItem>
-						<TableItem label={'土曜日'} color="blue" paddingBottom={4}>10時&nbsp;～&nbsp;16時</TableItem>
+						<TableItem label={'平 日'} color="bronze" paddingBottom={4}>9時&nbsp;～&nbsp;18時</TableItem>
+						<TableItem label={'土曜日'} color="bronze" paddingBottom={4}>10時&nbsp;～&nbsp;16時</TableItem>
 						<TableItem label={'店休日'} color="grey" paddingBottom={0}>毎週日曜・祝日</TableItem>
 					</div>
 				</TableItem>
@@ -115,6 +115,25 @@ const titleIcons= {
 					<p class=" w-fit block ml-auto p-2">水彩画（1980年頃）　川上一已先生筆</p>
 				</div> -->
 
+			</div>
+			<div>
+				<dialog class="w-full h-full pt-[5.5vh]">
+					<div class="relative z-20 w-[min(100%,1024px)] mx-auto bg-white p-8 flex flex-col gap-8 shadow-2xl">
+						<Image
+							src={imgSansaido}
+							alt="三彩堂"
+							width={2726}
+							height={1935}
+							class=""
+						/>
+						<div class="flex flex-col gap-1 border-t-grey">
+							<strong class="">三彩堂店舗風景</strong>
+							<p class=" w-fit block">水彩画（1980年頃）　川上一已先生筆</p>
+							<button autofocus>close these tits</button>
+						</div>
+					</div>
+				</dialog>
+				<button>❓️　背景画について</button>
 			</div>
 		</div>
 	</MediumWrapper>
@@ -133,3 +152,25 @@ const titleIcons= {
 		/>
 	</MediumWrapper> -->	
 </Layout>
+
+<script>
+	const dialog = document.querySelector('dialog')
+	const showButton = document.querySelector('dialog + button')
+	const closeButton = document.querySelector('dialog button')
+
+	showButton?.addEventListener('click', () => {
+		dialog?.showModal()
+	})
+	closeButton?.addEventListener('click', () => {
+		dialog?.close()
+	})
+</script>
+
+<style>
+dialog {
+	background-color: transparent;
+}
+button {
+	cursor: pointer;
+}
+</style>
