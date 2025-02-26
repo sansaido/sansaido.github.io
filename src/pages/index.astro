@@ -51,14 +51,14 @@ const titleIcons= {
 					en:"General Inquiry",
 					ja:"一般のお客様"
 				}}
-				text={"当店へのお問い合わせはこちらから"}
+				text={`当店へのお問い合わせはこちらのお問い合わせフォーム<span class="text-xs">（Google Form）</span>をご利用ください。`}
 				url={formGeneral}			
 			/>
 		</div>
 	</MediumWrapper>
 
 	<MediumWrapper element='section'>
-		<div class="bg-white rounded-2xl py-6 px-2 md:py-12 md:px-38 flex flex-col gap-6 md:gap-12 shadow-2xl md:text-lg">
+		<div class="bg-white rounded-2xl py-6 px-2 md:py-12 md:px-38 flex flex-col gap-6 md:gap-10 shadow-2xl md:text-lg">
 			<PanelTitle
 				direction={"horizontal"}
 				title={{
@@ -68,6 +68,7 @@ const titleIcons= {
 				icon={titleIcons.about},
 				alt="パレット (絵画)のアイコン"
 			/>
+			
 			<div class="flex flex-col gap-8 sm:gap-12 relative">
 				<TableItem
 					label={"会社名"},
@@ -95,7 +96,7 @@ const titleIcons= {
 					className={`border-grey border-b-1 `}
 				/>
 				
-				<TableItem label={'営業時間'}>
+				<TableItem label={'営業時間'} className="border-grey border-b-1">
 					<div class="flex flex-col gap-0">
 						<TableItem label={'平 日'} color="bronze" paddingBottom={4}>9時&nbsp;～&nbsp;18時</TableItem>
 						<TableItem label={'土曜日'} color="bronze" paddingBottom={4}>10時&nbsp;～&nbsp;16時</TableItem>
@@ -116,7 +117,7 @@ const titleIcons= {
 				</div> -->
 
 			</div>
-			<div>
+			<div class="">
 				<dialog class="w-full h-full pt-[5.5vh]">
 					<div class="relative z-20 w-[min(100%,1024px)] mx-auto bg-white p-8 flex flex-col gap-8 shadow-2xl">
 						<Image
@@ -128,12 +129,22 @@ const titleIcons= {
 						/>
 						<div class="flex flex-col gap-1 border-t-grey">
 							<strong class="">三彩堂店舗風景</strong>
-							<p class=" w-fit block">水彩画（1980年頃）　川上一已先生筆</p>
-							<button autofocus>close these tits</button>
+							<p class=" w-fit block ">水彩画（1980年頃）　川上一已先生筆</p>
+							<button class="text-sm mt-8 mb-4 mx-auto bg-transparent ring ring-black/60 text-black/60 w-fit block py-6 px-10 leading-6 hover:opacity-70" autofocus>ポップアップを閉じる<span class="pl-4">✖</span></button>
 						</div>
 					</div>
 				</dialog>
-				<button>❓️　背景画について</button>
+				<button class="rounded-md block mb-12 shadow-xl relative overflow-hidden h-58 w-full rounded-2xl bg-black/80 group">
+				<Image
+					src={imgSansaido}
+					alt="三彩堂"
+					width={2726}
+					height={1935}
+					class="opacity-60 absolute left-1/2 top-1/2 -translate-1/2 saturate-0  group-hover:saturate-100 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+				/>
+					
+					<span class="text-white absolute top-1/2 left-1/2 -translate-1/2 py-4 px-8 ring ring-white whitespace-nowrap">背景画について<span class="pl-4">→</span></span>
+				</button>
 			</div>
 		</div>
 	</MediumWrapper>
@@ -172,5 +183,8 @@ dialog {
 }
 button {
 	cursor: pointer;
+}
+button.close {
+	
 }
 </style>

@@ -13,24 +13,24 @@ const copyrightDate = new Date().getFullYear()
                 <div class="font-display uppercase">Sansaido</div>
                 <div>株式会社三彩堂</div>
             </h2> -->
-            <div class="wrapper--logo relative py-5">
+            <div class="wrapper--logo relative py-5 ">
                 <Image
                     src={catchphrase}
                     alt="Life With Colorキャッチコピー"
                     width="747"
                     height="290"
-                    class:list={["opacity-20 mx-auto"]}
+                    class:list={["opacity-20 mx-auto max-w-[80vw]"]}
                 />
                 <Image
                     src={logo}
                     width={"305"}
                     height={"70"}
                     alt={"三彩堂ロゴ、英語表記SANSAIDO"}
-                    class:list={["absolute left-1/2 top-1/2 transform-gpu -translate-1/2"]}
+                    class:list={["absolute left-1/2 top-1/2 transform-gpu -translate-1/2 max-w-[55vw] md:max-w-none"]}
                 />
             </div>
             <div class="text-center">                
-                <p class="font-en uppercase text-sm tracking-widest">Copyright Sansaido Co.,Ltd {copyrightDate}</p>
+                <p class="font-en uppercase text-xs md:text-sm tracking-widest opacity-70">Copyright Sansaido Co.,Ltd {copyrightDate}</p>
             </div><!-- wrapper--text -->
         </div>
     </div>
