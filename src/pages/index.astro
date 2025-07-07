@@ -1,110 +1,191 @@
 ---
-import Image from 'astro/components/Image.astro';
-import Layout from '../layouts/Layout.astro';
-import MediumWrapper from '../components/wrappers/MediumWrapper.astro'
-import PanelTitle from '../components/PanelTitle.astro';
-import CardContact from '../components/links/CardContact.astro';
-import TableItem from '../components/TableItem.astro';
-import UnderlineLink from '../components/links/UnderlineLink.astro';
-import iconEnvelope from '../assets/images/icon--envelope.svg';
-import iconPalette from '../assets/images/icon--palette.svg';
-import iconHash from '../assets/images/icon--hash.svg';
-import imgSansaido from '../assets/images/sansaido-watercolor.jpg'
+import { sortedPosts } from "@data/posts";
+import Image from "astro/components/Image.astro";
+import Layout from "../layouts/Layout.astro";
+import MediumWrapper from "../components/wrappers/MediumWrapper.astro";
+import PanelTitle from "../components/PanelTitle.astro";
+import CardContact from "../components/links/CardContact.astro";
+import TableItem from "../components/TableItem.astro";
+import UnderlineLink from "../components/links/UnderlineLink.astro";
+import iconEnvelope from "../assets/images/icon--envelope.svg";
+import iconPalette from "../assets/images/icon--palette.svg";
+import iconHash from "../assets/images/icon--hash.svg";
+import imgSansaido from "../assets/images/sansaido-watercolor.jpg";
+import SliderNews from "src/components/sliders/SliderNews.astro";
 
-const formSchool = new URL("https://docs.google.com/forms/d/e/1FAIpQLSe_13cLW7yirNW8G6qcKeLKfcOXMPDbEiLIkPzG79CtcEEJxw/viewform?usp=preview")
-const formGeneral = new URL("https://docs.google.com/forms/d/e/1FAIpQLSenm_2K1KZl4uuTpuYF4gvnj54YWlULKXAIPCPBdgg4ohfCDA/viewform?usp=dialog")
-const urlGoogleMap = new URL("https://maps.app.goo.gl/1Wm3EFT13H6DAtvk7")
+// using this will simply import the data and not use an metadata we need for links, etc.
+// Instead we use an Astro collection (below)
+// const allPosts = Object.values(
+//   import.meta.glob("@posts/*.md", { eager: true })
+// );
 
-const titleIcons= {
-	contact: iconEnvelope,
-	about: iconPalette,
-	news: iconHash
-}
+// console.log("Here is allPosts:");
+// console.log(allPosts);
 
+const newestPost = sortedPosts[0];
+
+//this maybe should be a github env setting. TODO: think on it
+const formSchool = new URL(
+  "https://docs.google.com/forms/d/e/1FAIpQLSe_13cLW7yirNW8G6qcKeLKfcOXMPDbEiLIkPzG79CtcEEJxw/viewform?usp=preview"
+);
+const formGeneral = new URL(
+  "https://docs.google.com/forms/d/e/1FAIpQLSenm_2K1KZl4uuTpuYF4gvnj54YWlULKXAIPCPBdgg4ohfCDA/viewform?usp=dialog"
+);
+const urlGoogleMap = new URL("https://maps.app.goo.gl/1Wm3EFT13H6DAtvk7");
+
+const titleIcons = {
+  contact: iconEnvelope,
+  about: iconPalette,
+  news: iconHash,
+};
 ---
 
 <Layout>
-	<MediumWrapper element='section'>
-		<PanelTitle
-			direction={"vertical"}
-			title={{
-				en: "Contact",
-				ja: "お問い合わせ"
-			}},
-			icon={titleIcons.contact},
-			alt="封筒のアイコン"
-		/>
-		<div class="grid md:grid-cols-2 gap-5">			
-			<CardContact
-				variant={'red'}
-				title={{
-					en:"FOR SCHOOLS",
-					ja:"学校園関係者"
-				}},
-				text={'ご注文・お問い合わせ・ご連絡の際に学校園関係者専用のお問い合わせフォーム<span class="text-xs">（Google Form）</span>をご利用ください。'}
-				url={formSchool}
-				
-			/>
-			<CardContact
-				variant={'clear'}
-				title={{
-					en:"General Inquiry",
-					ja:"一般のお客様"
-				}}
-				text={`当店へのお問い合わせはこちらのお問い合わせフォーム<span class="text-xs">（Google Form）</span>をご利用ください。`}
-				url={formGeneral}			
-			/>
-		</div>
-	</MediumWrapper>
+  <MediumWrapper element="section">
+    <PanelTitle
+      direction={"vertical"}
+      title={{
+        en: "Contact",
+        ja: "お問い合わせ",
+      }}
+      ,
+      icon={titleIcons.contact}
+      ,
+      alt="封筒のアイコン"
+    />
+    <div class="grid md:grid-cols-2 gap-5">
+      <CardContact
+        variant={"red"}
+        title={{
+          en: "FOR SCHOOLS",
+          ja: "学校園関係者",
+        }}
+        ,
+        text={'ご注文・お問い合わせ・ご連絡の際に学校園関係者専用のお問い合わせフォーム<span class="text-xs">（Google Form）</span>をご利用ください。'}
+        url={formSchool}
+      />
+      <CardContact
+        variant={"clear"}
+        title={{
+          en: "General Inquiry",
+          ja: "一般のお客様",
+        }}
+        text={`当店へのお問い合わせはこちらのお問い合わせフォーム<span class="text-xs">（Google Form）</span>をご利用ください。`}
+        url={formGeneral}
+      />
+    </div>
+  </MediumWrapper>
 
-	<MediumWrapper element='section'>
-		<div class="bg-white rounded-2xl py-6 px-2 md:py-12 md:px-38 flex flex-col gap-6 md:gap-10 shadow-2xl md:text-lg">
-			<PanelTitle
-				direction={"horizontal"}
-				title={{
-					en: "About Us",
-					ja: "会社情報"
-				}},
-				icon={titleIcons.about},
-				alt="パレット (絵画)のアイコン"
-			/>
-			
-			<div class="flex flex-col gap-8 sm:gap-12 relative">
-				<TableItem
-					label={"会社名"},
-					content={`株式会社三彩堂`}
-					className={"border-grey border-b-1"}
-				/>
-				<TableItem
-					label={"所在地"},					
-					className={"border-grey border-b-1"}
-				>
-					<span class="mr-4">〒714-0081&nbsp;岡山県笠岡市笠岡2996</span>
-					<UnderlineLink link={urlGoogleMap.href} text="Google Mapリンク" /><br>
-					<span>※駐車場完備</span>
-				</TableItem>
-				<TableItem
-					label={"電話番号"},
-					className={`border-grey border-b-1 `}
-				>
-					<UnderlineLink link="tel:0865-62-3414" text="0865-62-3414"/>
-				</TableItem>
-				<!-- content={`<a href='tel:0865-62-3414' class="text-red">0865-62-3414</a>`} -->
-				<TableItem
-					label={"FAX番号"},
-					content={`0865-63-5472`}
-					className={`border-grey border-b-1 `}
-				/>
-				
-				<TableItem label={'営業時間'} className="border-grey border-b-1">
-					<div class="flex flex-col gap-0">
-						<TableItem label={'平 日'} color="bronze" paddingBottom={4}>9時&nbsp;～&nbsp;18時</TableItem>
-						<TableItem label={'土曜日'} color="bronze" paddingBottom={4}>10時&nbsp;～&nbsp;16時</TableItem>
-						<TableItem label={'店休日'} color="grey" paddingBottom={0}>毎週日曜・祝日</TableItem>
-					</div>
-				</TableItem>
+  <MediumWrapper element="section">
+    <div
+      class="bg-white rounded-2xl flex overflow-hidden md:w-3/4 mx-auto shadow-2xl"
+    >
+      <a
+        href={newestPost.collection}
+        class="bg-red text-white min-w-fit px-2 md:px-8 py-4 h-auto flex flex-col justify-center transition-opacity,_scale duration-200 hover:opacity-70 hover:scale-102"
+      >
+        <h2>
+          <div class="flex flex-col">
+            <div class="font-en uppercase tracking-widest text-xs">
+              Latest News
+            </div>
+            <div class="font-serif text-md md:text-2xl tracking-wider">
+              新着情報
+            </div>
+          </div>
+        </h2>
+      </a>
+      <a
+        href={newestPost.collection + "/" + newestPost.id}
+        class="linkNewestPost px-4 py-4 md:px-8"
+      >
+        <div class="wrapperPostInfo">
+          <time
+            datetime={newestPost.data.pubDate.toISOString()}
+            class="font-en text-red text-sm"
+          >
+            {
+              newestPost.data.pubDate
+                .toISOString()
+                .split("T")[0]
+                .replace(/-/g, ".")
+            }
+          </time>
+          <h3 class="font-serif">
+            <span class="span-underlinelink">{newestPost.data.title}</span>
+          </h3>
+        </div>
+        <svg
+          class:list={[
+            "hidden md:block min-w-8 min-h-8 w-8 h-8 size-9 rounded-full p-3 bg-transparent shadow-xl transition-colors duration-200",
+          ]}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 16.6 6.68"
+        >
+          <polygon
+            class:list={["fill-red transition-colors duration-200"]}
+            points="16.6 3.34 10.71 0 10.71 2.84 0 2.84 0 3.84 10.71 3.84 10.71 6.68 16.6 3.34"
+            stroke="#fff"></polygon>
+        </svg>
+      </a>
+    </div>
+  </MediumWrapper>
 
-				<!-- <div class="absolute bottom-0 right-[-25px] text-right tracking-wider text">
+  <MediumWrapper element="section">
+    <div
+      class="bg-white rounded-2xl py-6 px-2 md:py-12 md:px-38 flex flex-col gap-6 md:gap-10 shadow-2xl md:text-lg"
+    >
+      <PanelTitle
+        direction={"horizontal"}
+        title={{
+          en: "About Us",
+          ja: "会社情報",
+        }}
+        ,
+        icon={titleIcons.about}
+        ,
+        alt="パレット (絵画)のアイコン"
+      />
+
+      <div class="flex flex-col gap-8 sm:gap-12 relative">
+        <TableItem
+          label={"会社名"}
+          ,
+          content={`株式会社三彩堂`}
+          className={"border-grey border-b-1"}
+        />
+        <TableItem label={"所在地"} , className={"border-grey border-b-1"}>
+          <span class="mr-4">〒714-0081&nbsp;岡山県笠岡市笠岡2996</span>
+          <UnderlineLink link={urlGoogleMap.href} text="Google Mapリンク" /><br
+          />
+          <span>※駐車場完備</span>
+        </TableItem>
+        <TableItem label={"電話番号"} , className={`border-grey border-b-1 `}>
+          <UnderlineLink link="tel:0865-62-3414" text="0865-62-3414" />
+        </TableItem>
+        <!-- content={`<a href='tel:0865-62-3414' class="text-red">0865-62-3414</a>`} -->
+        <TableItem
+          label={"FAX番号"}
+          ,
+          content={`0865-63-5472`}
+          className={`border-grey border-b-1 `}
+        />
+
+        <TableItem label={"営業時間"} className="border-grey border-b-1">
+          <div class="flex flex-col gap-0">
+            <TableItem label={"平 日"} color="bronze" paddingBottom={4}
+              >9時&nbsp;～&nbsp;18時</TableItem
+            >
+            <TableItem label={"土曜日"} color="bronze" paddingBottom={4}
+              >10時&nbsp;～&nbsp;16時</TableItem
+            >
+            <TableItem label={"店休日"} color="grey" paddingBottom={0}
+              >毎週日曜・祝日</TableItem
+            >
+          </div>
+        </TableItem>
+
+        <!-- <div class="absolute bottom-0 right-[-25px] text-right tracking-wider text">
 					<Image
 						src={imgSansaido}
 						alt="三彩堂"
@@ -115,76 +196,102 @@ const titleIcons= {
 					<strong class=" p-2">三彩堂店舗風景</strong>
 					<p class=" w-fit block ml-auto p-2">水彩画（1980年頃）　川上一已先生筆</p>
 				</div> -->
+      </div>
+      <div class="">
+        <dialog class="w-full h-full pt-[5.5vh]">
+          <div
+            class="relative z-20 w-[min(100%,1024px)] mx-auto bg-white p-8 flex flex-col gap-8 shadow-2xl"
+          >
+            <Image
+              src={imgSansaido}
+              alt="三彩堂"
+              width={2726}
+              height={1935}
+              class=""
+            />
+            <div class="flex flex-col gap-1 border-t-grey">
+              <strong class="">三彩堂店舗風景</strong>
+              <p class="w-fit block">水彩画（1980年頃）　川上一已先生筆</p>
+              <button
+                class="text-sm mt-8 mb-4 mx-auto bg-transparent ring ring-black/60 text-black/60 w-fit block py-6 px-10 leading-6 hover:opacity-70"
+                autofocus
+                >ポップアップを閉じる<span class="pl-4">✖</span></button
+              >
+            </div>
+          </div>
+        </dialog>
+        <button
+          class="block mb-12 shadow-xl relative overflow-hidden h-100 w-full rounded-2xl bg-black/80 group"
+        >
+          <Image
+            src={imgSansaido}
+            alt="三彩堂"
+            width={2726}
+            height={1935}
+            class="h-full object-cover opacity-60 absolute left-1/2 top-1/2 -translate-1/2 saturate-0 group-hover:saturate-100 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+          />
 
-			</div>
-			<div class="">
-				<dialog class="w-full h-full pt-[5.5vh]">
-					<div class="relative z-20 w-[min(100%,1024px)] mx-auto bg-white p-8 flex flex-col gap-8 shadow-2xl">
-						<Image
-							src={imgSansaido}
-							alt="三彩堂"
-							width={2726}
-							height={1935}
-							class=""
-						/>
-						<div class="flex flex-col gap-1 border-t-grey">
-							<strong class="">三彩堂店舗風景</strong>
-							<p class=" w-fit block ">水彩画（1980年頃）　川上一已先生筆</p>
-							<button class="text-sm mt-8 mb-4 mx-auto bg-transparent ring ring-black/60 text-black/60 w-fit block py-6 px-10 leading-6 hover:opacity-70" autofocus>ポップアップを閉じる<span class="pl-4">✖</span></button>
-						</div>
-					</div>
-				</dialog>
-				<button class="rounded-md block mb-12 shadow-xl relative overflow-hidden h-58 w-full rounded-2xl bg-black/80 group">
-				<Image
-					src={imgSansaido}
-					alt="三彩堂"
-					width={2726}
-					height={1935}
-					class="opacity-60 absolute left-1/2 top-1/2 -translate-1/2 saturate-0  group-hover:saturate-100 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-				/>
-					
-					<span class="text-white absolute top-1/2 left-1/2 -translate-1/2 py-4 px-8 ring ring-white whitespace-nowrap">背景画について<span class="pl-4">→</span></span>
-				</button>
-			</div>
-		</div>
-	</MediumWrapper>
+          <span
+            class="text-white absolute top-1/2 left-1/2 -translate-1/2 py-4 px-8 ring ring-white whitespace-nowrap"
+            >背景画について<span class="pl-4">→</span></span
+          >
+        </button>
+      </div>
+    </div>
+  </MediumWrapper>
 
-	
+  <section>
+    <PanelTitle
+      direction={"vertical"}
+      title={{
+        en: "Latest",
+        ja: "新着情報",
+      }}
+      ,
+      icon={titleIcons.news}
+      ,
+      alt="ハッシュタグのアイコン"
+    />
 
-	<!-- <MediumWrapper>
-		<PanelTitle
-			direction={"vertical"}
-			title={{
-				en: "Latest",
-				ja: "新着情報"
-			}},
-			icon={titleIcons.news},
-			alt="ハッシュタグのアイコン"
-		/>
-	</MediumWrapper> -->	
+    {
+      // sortedPosts.map((post: any) => (
+      //   <a href={post.collection + "/" + post.id}>
+      //     <p>Collection: {post.collection}</p>
+      //     <br />
+      //     <p>ID: {post.id}</p>
+      //     <br />
+      //     <p>Title: {post.data.title}</p>
+      //     <br />
+      //     <p>Date: {post.data.pubDate}</p>
+      //     <br />
+      //     <p>{post.body}</p>
+      //   </a>
+      // ))
+    }
+    <SliderNews />
+  </section>
 </Layout>
 
 <script>
-	const dialog = document.querySelector('dialog')
-	const showButton = document.querySelector('dialog + button')
-	const closeButton = document.querySelector('dialog button')
+  const dialog = document.querySelector("dialog");
+  const showButton = document.querySelector("dialog + button");
+  const closeButton = document.querySelector("dialog button");
 
-	showButton?.addEventListener('click', () => {
-		dialog?.showModal()
-	})
-	closeButton?.addEventListener('click', () => {
-		dialog?.close()
-	})
+  showButton?.addEventListener("click", () => {
+    dialog?.showModal();
+  });
+  closeButton?.addEventListener("click", () => {
+    dialog?.close();
+  });
 </script>
 
 <style>
-dialog {
-	background-color: transparent;
-}
-button {
-	cursor: pointer;
-}
-button.close {
-	
-}
+  dialog {
+    background-color: transparent;
+  }
+  button {
+    cursor: pointer;
+  }
+  button.close {
+  }
 </style>

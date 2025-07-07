@@ -1,93 +1,103 @@
 ---
 interface Props {
-    link: URL | string,
-    text: string,
+  link: URL | string;
+  text: string;
 }
-const {link, text} = Astro.props
+const { link, text } = Astro.props;
 ---
 
-<a class="underlinelink text-red inline-flex w-fit items-center gap-3" href={link}>
-    <span class="span-underlinelink" set:html={text}/>
-    <svg class:list={['size-9 rounded-full p-3 bg-transparent shadow-xl transition-colors duration-200']} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.6 6.68">
-        <polygon class:list={['fill-red transition-colors duration-200']} points="16.6 3.34 10.71 0 10.71 2.84 0 2.84 0 3.84 10.71 3.84 10.71 6.68 16.6 3.34"/>
-    </svg>
-    <slot/>
+<a
+  class="underlinelink text-red inline-flex w-fit items-center gap-3"
+  href={link}
+>
+  <span class="span-underlinelink" set:html={text} />
+  <svg
+    class:list={[
+      "size-9 rounded-full p-3 bg-transparent shadow-xl transition-colors duration-200",
+    ]}
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 16.6 6.68"
+  >
+    <polygon
+      class:list={["fill-red transition-colors duration-200"]}
+      points="16.6 3.34 10.71 0 10.71 2.84 0 2.84 0 3.84 10.71 3.84 10.71 6.68 16.6 3.34"
+    ></polygon>
+  </svg>
+  <slot />
 </a>
 
 <style>
-    
+  .span-underlinelink {
+    background-image: linear-gradient(
+      to right,
+      var(--color-red) 0%,
+      var(--color-red) 100%
+    );
+    background-position: 100% 100%;
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    transition: background-size cubic-bezier(0.215, 0.61, 0.355, 1) 300ms;
+  }
+  a:hover {
     .span-underlinelink {
-        background-image: linear-gradient(to right, var(--color-red) 0%, var(--color-red) 100%);        
-        background-position: 100% 100%;
-        background-size: 0% 1px;
-        background-repeat: no-repeat;
-        transition: background-size cubic-bezier(.215,.61,.355,1) 300ms;        
+      background-size: 100% 1px;
+      background-position: 0% 100%;
     }
-    a:hover {
-        .span-underlinelink {
-            background-size: 100% 1px;
-            background-position: 0% 100%;
-        }        
-        svg {
-            
-            background-color: var(--color-red);
-        }
-        svg polygon {            
-            animation-name: animArrow;   
-            animation-duration: 400ms;
-            animation-iteration-count: 1;
-            animation-fill-mode: both;
-            background-color: blue;
-            fill: var(--color-white);
-        }
-        
+    svg {
+      background-color: var(--color-red);
     }
-    .animate {
-        .span-underlinelink {
-            animation: animLinkAppear 700ms 250ms 1;
-            animation-timing-function: cubic-bezier(.215,.61,.355,1);
-
-        }
+    svg polygon {
+      animation-name: animArrow;
+      animation-duration: 400ms;
+      animation-iteration-count: 1;
+      animation-fill-mode: both;
+      fill: var(--color-white);
     }
-    @keyframes animLinkAppear {
-        0% {
-            background-position: 0% 100%;
-            background-size: 0% 1px;
-        }
-        1% {
-            background-position: 0% 100%;
-            background-size: 0% 1px;
-        }
-        20% {                
-            background-position: 0% 100%;
-            background-size: 100% 1px;
-        }
-        80% {
-            background-position: 100% 100%;
-            background-size: 100% 1px;
-        }
-        100% {
-            background-position: 100% 100%;
-            background-size: 0% 1px;
-        }
+  }
+  .animate {
+    .span-underlinelink {
+      animation: animLinkAppear 700ms 250ms 1;
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     }
+  }
+  @keyframes animLinkAppear {
+    0% {
+      background-position: 0% 100%;
+      background-size: 0% 1px;
+    }
+    1% {
+      background-position: 0% 100%;
+      background-size: 0% 1px;
+    }
+    20% {
+      background-position: 0% 100%;
+      background-size: 100% 1px;
+    }
+    80% {
+      background-position: 100% 100%;
+      background-size: 100% 1px;
+    }
+    100% {
+      background-position: 100% 100%;
+      background-size: 0% 1px;
+    }
+  }
 </style>
 
 <script>
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if(entry.isIntersecting) {
-                console.log(`observing: ${entry}`)
-                entry.target.classList.add('animate');
-                // observer.unobserve(entry);
-
-            }
-        })
-    },{})
-    const links = document.querySelectorAll('.span-underlinelink')
-    if(links) {
-        links.forEach((link) => {
-            observer.observe(link)
-        })
-    }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        console.log(`observing: ${entry}`);
+        entry.target.classList.add("animate");
+        // observer.unobserve(entry);
+      }
+    });
+  }, {});
+  const links = document.querySelectorAll(".span-underlinelink");
+  if (links) {
+    links.forEach((link) => {
+      observer.observe(link);
+    });
+  }
 </script>
