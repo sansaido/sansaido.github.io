@@ -13,17 +13,8 @@ import iconHash from "../assets/images/icon--hash.svg";
 import imgSansaido from "../assets/images/sansaido-watercolor.jpg";
 import SliderNews from "src/components/sliders/SliderNews.astro";
 
-// using this will simply import the data and not use an metadata we need for links, etc.
-// Instead we use an Astro collection (below)
-// const allPosts = Object.values(
-//   import.meta.glob("@posts/*.md", { eager: true })
-// );
-
-// console.log("Here is allPosts:");
-// console.log(allPosts);
-
 const newestPost = sortedPosts[0];
-
+//TODO: favicon, robots.txt, metadata
 //this maybe should be a github env setting. TODO: think on it
 const formSchool = new URL(
   "https://docs.google.com/forms/d/e/1FAIpQLSe_13cLW7yirNW8G6qcKeLKfcOXMPDbEiLIkPzG79CtcEEJxw/viewform?usp=preview"
@@ -200,20 +191,20 @@ const titleIcons = {
       <div class="">
         <dialog class="w-full h-full pt-[5.5vh]">
           <div
-            class="relative z-20 w-[min(100%,1024px)] mx-auto bg-white p-8 flex flex-col gap-8 shadow-2xl"
+            class="relative z-20 w-[min(100%,960px)] mx-auto flex flex-col text-white text-[0.925rem] gap-2"
           >
             <Image
               src={imgSansaido}
               alt="三彩堂"
               width={2726}
               height={1935}
-              class=""
+              class="pb-6"
             />
             <div class="flex flex-col gap-1 border-t-grey">
-              <strong class="">三彩堂店舗風景</strong>
+              <div class="">三彩堂店舗風景</div>
               <p class="w-fit block">水彩画（1980年頃）　川上一已先生筆</p>
               <button
-                class="text-sm mt-8 mb-4 mx-auto bg-transparent ring ring-black/60 text-black/60 w-fit block py-6 px-10 leading-6 hover:opacity-70"
+                class="absolute -bottom-4 right-0 text-sm mt-4 mx-auto bg-transparent ring ring-white text-white w-fit block py-6 px-10 leading-6 hover:opacity-70"
                 autofocus
                 >ポップアップを閉じる<span class="pl-4">✖</span></button
               >
@@ -221,7 +212,7 @@ const titleIcons = {
           </div>
         </dialog>
         <button
-          class="block mb-12 shadow-xl relative overflow-hidden h-100 w-full rounded-2xl bg-black/80 group"
+          class="block mb-12 shadow-xl relative overflow-hidden h-86 w-full rounded-2xl bg-black/80 group"
         >
           <Image
             src={imgSansaido}
@@ -252,22 +243,6 @@ const titleIcons = {
       ,
       alt="ハッシュタグのアイコン"
     />
-
-    {
-      // sortedPosts.map((post: any) => (
-      //   <a href={post.collection + "/" + post.id}>
-      //     <p>Collection: {post.collection}</p>
-      //     <br />
-      //     <p>ID: {post.id}</p>
-      //     <br />
-      //     <p>Title: {post.data.title}</p>
-      //     <br />
-      //     <p>Date: {post.data.pubDate}</p>
-      //     <br />
-      //     <p>{post.body}</p>
-      //   </a>
-      // ))
-    }
     <SliderNews />
   </section>
 </Layout>
@@ -277,12 +252,19 @@ const titleIcons = {
   const showButton = document.querySelector("dialog + button");
   const closeButton = document.querySelector("dialog button");
 
+  dialog?.addEventListener("mousedown", (e) => {
+    if (e.target === dialog) dialog.close();
+  });
   showButton?.addEventListener("click", () => {
     dialog?.showModal();
   });
   closeButton?.addEventListener("click", () => {
     dialog?.close();
   });
+
+  // dialog?.addEventListener("onmousedown", () => {
+  //   dialog.close();
+  // });
 </script>
 
 <style>

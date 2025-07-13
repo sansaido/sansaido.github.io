@@ -90,6 +90,7 @@ body {
         var(--color-grey),
         var(--color-black)
     );
+    background-image: radial-gradient(circle,rgba(143, 143, 143, 1) 0%, rgba(26, 26, 26, 1) 40%);
     opacity: 0.55;
 }
 

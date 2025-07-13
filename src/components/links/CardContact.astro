@@ -9,6 +9,8 @@ interface Props {
   url: URL;
 }
 
+// TODO: fix on 1440p res (macbook)
+
 const { variant, title, text, url } = Astro.props;
 
 const getVariantClasses = (variant: string) => {
