@@ -2,7 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import { getCollection, render } from "astro:content";
 import Posts from "src/layouts/Posts.astro";
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";;
 import UnderlineLink from "src/components/links/UnderlineLink.astro";
 
 // export const getStaticPaths = async () => (() => {
