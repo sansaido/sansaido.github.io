@@ -31,11 +31,10 @@ console.dir(post)
 
 <Posts frontmatter={post.data}>
     <div class="wrapperTitle">
-      <h1 class="postTitle mb-2 whitespace-normal flex items-baseline">
-        <span class="text-red border-red border-l-1 border-t-1 py-4 pl-5 inline-block text-6xl">{post.data.title.slice(0, 1)}</span>
-        <span class="inline-block">{post.data.title.slice(1)}</span>
+      <h1 class="postTitle mb-2 whitespace-normal">
+        <span class="text-red border-red border-l-1 border-t-1 py-4 pl-5 pr-1 text-4xl md:text-5xl inline">{post.data.title.slice(0, 1)}</span><span class="text-2xl md:text-4xl inline">{post.data.title.slice(1)}</span>
       </h1>
-      <time datetime={date.toString()} class="text-red pl-5">
+      <time datetime={date.toString()} class="text-red pl-1 text-sm md:text-base md:pl-5">
         {date.toString()}
         <!-- {date.getUTCMonth().toString()}年{post.data.pubDate.getUTCMonth().toString().padStart(2, "0")}月{post.data.pubDate.getUTCDate().toString().padStart(2, "0")} -->
       </time>
