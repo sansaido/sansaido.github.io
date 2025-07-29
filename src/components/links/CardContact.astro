@@ -55,7 +55,7 @@ const polygonClasses = getPolygonClasses(variant)
             <span class="relative" set:html={title.ja} />
             <span class="absolute" set:html={title.ja} />
         </h3>
-        <div class="flex flex-col lg:flex-row gap-4 lg:gap-10 pt-4 justify-between">
+        <div class="flex flex-col lg:flex-column gap-4 lg:gap-10 pt-4 justify-between">
             <p class="leading-6" set:html={text}/>
             <svg class:list={["size-24 w-full md:w-auto shrink-0 rounded-2xl py-11 md:p-11 shadow-lg bg-white/20 "]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.6 6.68">
                 <polygon class:list={[polygonClasses]} points="16.6 3.34 10.71 0 10.71 2.84 0 2.84 0 3.84 10.71 3.84 10.71 6.68 16.6 3.34"/>
