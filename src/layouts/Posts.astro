@@ -25,14 +25,15 @@ import background from "../assets/images/bg-pattern2.png";
         class:list={"h-[105vh] w-full max-h-[105vh] object-contain bg-image"}
       />
     </div>
-    <header class="relative z-50 pt-[32.5vh] pb-4">
+    <header class="relative z-50 pt-[5vh] pb-4 border-b-1 ">
       <h1
         class="text-center
-				w-fit max-w-[90%]
+				w-fit max-w-[256px]
 				mx-auto
 				rounded-full
 				flex flex-col gap-2"
       >
+      <a href="/" class="cursor-pointer transition-opacity hover:opacity-70">
         <!-- <span class="text-red font-display text-6xl block">SANSAIDO</span>
 				<span>株式会社三彩堂</span> -->
         <Image
@@ -40,19 +41,20 @@ import background from "../assets/images/bg-pattern2.png";
           alt="株式会社三彩堂の英語ロゴ、SANSAIDO"
           width={"505"}
           height={"65"}
-          class={"mx-auto w-[75vw] md:w-[82.5vw]"}
+          class={""}
         />
-        <span
+        <!-- <span
           class="tracking-wider font-serif pt-2 leading-7 text-sm md:text-lg"
           ><span class="inline-block">1951年創業、</span><span
             class="inline-block">岡山県笠岡市にある</span
           ><span class="inline-block">教材・額縁・画材店</span><span
             class="inline-block">「三彩堂」</span
           ></span
-        >
+        > -->
+      </a>
       </h1>
     </header>
-    <main class="flex flex-col gap-16 pt-20 pb-32 relative z-10 max-w-3xl">
+    <main class="flex flex-col gap-8 pt-20 pb-32 relative z-10 max-w-3xl">
       <slot />
     </main>
     <!-- TODO: make footer pull up from the bottom -->
@@ -84,7 +86,7 @@ import background from "../assets/images/bg-pattern2.png";
       scale: 0.96;
     }
     100% {
-      opacity: 0.3;
+      opacity: 0.15;
       scale: 1;
     }
   }

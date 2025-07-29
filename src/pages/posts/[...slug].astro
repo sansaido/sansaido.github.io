@@ -3,6 +3,7 @@ import type { GetStaticPaths } from "astro";
 import { getCollection, render } from "astro:content";
 import Posts from "src/layouts/Posts.astro";
 import Image from "astro/components/Image.astro";
+import UnderlineLink from "src/components/links/UnderlineLink.astro";
 
 // export const getStaticPaths = async () => (() => {
 //     const posts = await getCollection('posts'))
@@ -21,22 +22,45 @@ export const getStaticPaths = (async () => {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const date = await new Intl.DateTimeFormat("ja-JP", {
+  weekday: "short", year: "numeric", month: "long", day: "numeric"
+}).format(new Date(post.data.pubDate))
+
+console.dir(post)
 ---
 
 <Posts frontmatter={post.data}>
-  <h1 class="postTitle">{post.data.title}</h1>
-  <time datetime={post.data.pubDate.toString()}>
-    {post.data.pubDate.toString()}
-  </time>
-  <div class="wrapperImage">
-    <Image
-      src={post.rendered?.metadata.frontmatter.image.url}
-      alt={post.rendered?.metadata.frontmatter.image.alt}
-      width={2000}
-      height={1024}
-    />
+    <div class="wrapperTitle">
+      <h1 class="postTitle mb-2 whitespace-normal flex items-baseline">
+        <span class="text-red border-red border-l-1 border-t-1 py-4 pl-5 inline-block text-6xl">{post.data.title.slice(0, 1)}</span>
+        <span class="inline-block">{post.data.title.slice(1)}</span>
+      </h1>
+      <time datetime={date.toString()} class="text-red pl-5">
+        {date.toString()}
+        <!-- {date.getUTCMonth().toString()}年{post.data.pubDate.getUTCMonth().toString().padStart(2, "0")}月{post.data.pubDate.getUTCDate().toString().padStart(2, "0")} -->
+      </time>
+    </div>
+    <figure class="wrapperImage">
+      <Image
+        src={post.rendered?.metadata.frontmatter.image.url}
+        alt={post.rendered?.metadata.frontmatter.image.alt}
+        width={2000}
+        height={1024}
+        class="h-full w-full object-contain max-h-100 rounded-2xl"
+      />
+      <div class="credits text-grey-dark text-sm text-center pt-4 ">
+        <Fragment set:html={post.data.credit}/>
+      </div>
+    </figure>
+ 
+  <div class="wrapperContent border-red border-l-1 pl-5 py-3 leading-7">
+    <Content />
   </div>
-  <Content />
+  
+  <div class="flex w-full justify-center">
+    <UnderlineLink link="/" text="トップへ戻る"></UnderlineLink>
+  </div>
+
 </Posts>
 
 <style>

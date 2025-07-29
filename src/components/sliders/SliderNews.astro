@@ -31,7 +31,9 @@ import MediumWrapper from "../wrappers/MediumWrapper.astro";
                     .split("T")[0]
                     .replace(/-/g, ".")}
                 </time>
-                <h3 class="title">{post.data.title}</h3>
+                <h3 class="title block">
+                  <span class="text-red inline-block">{post.data.title[0]}</span><span class="">{post.data.title.slice(1)}</span>
+                </h3>
               </div>
               <p class="body">{post.body}</p>
             </div>

@@ -45,7 +45,7 @@
 }
 
 @theme inline {
-    --background-image-radial-red: radial-gradient(circle at 15% -34%, var(--color-red-light) 0%, var(--color-red) 85%);
+    --background-image-radial-red: radial-gradient(circle at -50% -34%, var(--color-red-light) 0%, var(--color-red) 85%);
     /* --background-image-radial-red: radial-gradient(circle at -50% 50%, var(--color-red-dark) 20%, var(--color-red-light) 100%); */
 
 }
