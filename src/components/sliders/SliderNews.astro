@@ -1,0 +1,88 @@
+---
+import { sortedPosts } from "@data/posts";
+import Image from "astro/components/Image.astro";
+import MediumWrapper from "../wrappers/MediumWrapper.astro";
+---
+
+<MediumWrapper>
+  <div
+    class="swiperNews grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pb-8"
+  >
+    {
+      sortedPosts.map((post) => (
+        <div class="newsSlide">
+          <a href={post.collection + "/" + post.id} class="newsLink">
+            <div class="wrapperImage">
+              <Image
+                src={post.rendered.metadata.frontmatter.image.url}
+                alt={post.rendered.metadata.frontmatter.image.alt}
+                width={340}
+                height={340}
+              />
+            </div>
+            <div class="wrapperText">
+              <div class="wrapperTitle">
+                <time
+                  datetime={post.data.pubDate.toISOString()}
+                  class="font-en text-red text-sm"
+                >
+                  {post.data.pubDate
+                    .toISOString()
+                    .split("T")[0]
+                    .replace(/-/g, ".")}
+                </time>
+                <h3 class="title block">
+                  <span class="text-red inline-block">{post.data.title[0]}</span><span class="">{post.data.title.slice(1)}</span>
+                </h3>
+              </div>
+              <p class="body">{post.body}</p>
+            </div>
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</MediumWrapper>
+<!-- <div>
+  <div class="swiper swiperNews">
+    <div class="swiper-wrapper">
+      {
+        sortedPosts.map((post) => (
+          <div class="swiper-slide newsSlide">
+            <a href={post.collection + "/" + post.id} class="newsLink">
+              <div class="wrapperImage">
+                <Image
+                  src={post.rendered.metadata.frontmatter.image.url}
+                  alt={post.rendered.metadata.frontmatter.image.alt}
+                  width={340}
+                  height={340}
+                />
+              </div>
+              <div class="wrapperText">
+                <p>{post.collection}</p>
+                <p>{post.data.title}</p>
+                <p>{post.data.pubDate}</p>
+              </div>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div> -->
+
+<style>
+  .swiper-wrapper {
+    padding-bottom: 4rem;
+  }
+</style>
+
+<script>
+  // import Swiper from "swiper";
+  // import "swiper/css";
+  // const swiper = new Swiper(".swiperNews", {
+  //   slidesPerView: 4.65,
+  //   spaceBetween: 20,
+  //   // slidesOffsetBefore: 325,
+  // });
+</script>
