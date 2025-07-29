@@ -1,11 +1,9 @@
 ---
 import Image from "astro/components/Image.astro";
-import Footer from "../components/Footer.astro";
+import Footer from "src/components/Footer.astro";
 import "../styles/global.css";
 import logo from "../assets/images/logo--header.svg";
 import background from "../assets/images/bg-pattern2.png";
-
-// TODO: need to set favicon
 ---
 
 <!doctype html>
@@ -54,7 +52,7 @@ import background from "../assets/images/bg-pattern2.png";
         >
       </h1>
     </header>
-    <main class="flex flex-col gap-16 pt-20 pb-32 relative z-10">
+    <main class="flex flex-col gap-16 pt-20 pb-32 relative z-10 max-w-3xl">
       <slot />
     </main>
     <!-- TODO: make footer pull up from the bottom -->
@@ -70,7 +68,6 @@ import background from "../assets/images/bg-pattern2.png";
     height: 100%;
   }
   main {
-    max-width: 95%;
     margin-left: auto;
     margin-right: auto;
   }

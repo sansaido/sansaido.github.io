@@ -13,8 +13,10 @@
     --color-grey-dark: #949494;
     --color-grey-lt: #e6e6e6;
 
+    /* TODO: make the red a little less purple */
     --color-red-fb: #ca3c5c;
     --color-red:oklch(57.19% 0.1783 11.7);
+    --color-red:oklch(50% 0.2 15);
 
     --color-red-dark-fb: #ab0c41;
     --color-red-dark: oklch(47.67% 0.1845 11.7);
@@ -30,7 +32,7 @@
 
     --color-bronze-fb: #d1a75c;
     /* --color-bronze: oklch(81.69% 0.0861 55.77); */
-    --color-bronze: oklch(92.14% 0.0461 56.59);
+    --color-bronze: oklch(80% 0.032 40);
 
     --color-purple-fb:#6100cf;
     --color-purple1:oklch(44.46% 0.2536 292.01);
@@ -43,7 +45,7 @@
 }
 
 @theme inline {
-    --background-image-radial-red: radial-gradient(circle at 15% -34%, var(--color-red-light) 34%, var(--color-red-dark) 85%);
+    --background-image-radial-red: radial-gradient(circle at 15% -34%, var(--color-red-light) 0%, var(--color-red) 85%);
     /* --background-image-radial-red: radial-gradient(circle at -50% 50%, var(--color-red-dark) 20%, var(--color-red-light) 100%); */
 
 }
@@ -84,9 +86,86 @@ body {
 /* <dialog>用 */ 
 ::backdrop {
     background-image: linear-gradient(
-      -45deg,
-      var(--color-grey),
-      var(--color-black)
+        -45deg,
+        var(--color-grey),
+        var(--color-black)
     );
+    background-image: radial-gradient(circle,rgba(143, 143, 143, 1) 0%, rgba(26, 26, 26, 1) 40%);
     opacity: 0.55;
-  }
+}
+
+
+/* TOPページ */
+.linkNewestPost {
+    @apply w-full bg-white h-auto flex justify-between md:text-lg;
+    align-items: center;
+    .wrapperPostInfo {
+        @apply flex flex-col justify-center;
+    }
+    svg {
+        background-color: var(--color-red);
+        polygon {
+            fill: white;
+        }
+    }
+    .span-underlinelink {
+        background-image: linear-gradient(
+        to right,
+        var(--color-red) 0%,
+        var(--color-red) 100%
+        );
+        background-position: 100% 100%;
+        background-size: 0% 1px;
+        background-repeat: no-repeat;
+        transition: background-size cubic-bezier(0.215, 0.61, 0.355, 1) 300ms;
+    }
+    &:hover {
+        .span-underlinelink {
+            @apply text-red;
+            background-size: 100% 1px;
+            background-position: 0% 100%;
+        }       
+        
+        svg polygon {
+            animation-name: animArrow;
+            animation-duration: 400ms;
+            animation-iteration-count: 1;
+            animation-fill-mode: both;
+        }
+    }
+}
+
+.newsSlide {
+    @apply bg-white/50 rounded-4xl shadow-xl transition-opacity duration-200 backdrop-blur-2xl h-fit;
+    &:hover {
+        .wrapperImage img {
+            scale: 1.05;
+            opacity: 80%;
+        }
+        .wrapperText {
+            opacity: 0.8
+        }
+    }
+    .newsLink {
+        @apply flex flex-col gap-6 p-4;
+    }
+    .wrapperImage {
+        @apply overflow-hidden rounded-4xl h-64;
+        img {
+            @apply h-full w-full object-cover duration-200;
+            transition-property: opacity, scale
+        }
+    }
+    .wrapperText {
+        @apply pb-6 px-6 duration-200 transition-opacity flex flex-col gap-4;
+    }
+    .wrapperTitle {
+        @apply flex flex-col gap-1;
+    }
+    .title {
+        @apply font-serif text-2xl tracking-wider leading-9;
+    }
+    .body {
+        @apply text-sm max-h-[8.25ch] overflow-hidden;
+    }
+} /* .newsSlide */

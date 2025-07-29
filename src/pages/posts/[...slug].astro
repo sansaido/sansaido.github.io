@@ -1,0 +1,47 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, render } from "astro:content";
+import Posts from "src/layouts/Posts.astro";
+import Image from "astro/components/Image.astro";
+
+// export const getStaticPaths = async () => (() => {
+//     const posts = await getCollection('posts'))
+//     return posts.map(post=>({
+//         params: { slug: post.id }, props: { post}
+//     }))
+// }) satisfies GetStaticPaths;
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Posts frontmatter={post.data}>
+  <h1 class="postTitle">{post.data.title}</h1>
+  <time datetime={post.data.pubDate.toString()}>
+    {post.data.pubDate.toString()}
+  </time>
+  <div class="wrapperImage">
+    <Image
+      src={post.rendered?.metadata.frontmatter.image.url}
+      alt={post.rendered?.metadata.frontmatter.image.alt}
+      width={2000}
+      height={1024}
+    />
+  </div>
+  <Content />
+</Posts>
+
+<style>
+  .postTitle {
+    font-size: 240%;
+    font-family: "Noto Serif JP", serif;
+  }
+</style>
