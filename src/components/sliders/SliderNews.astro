@@ -3,6 +3,13 @@ import { sortedPosts } from "@data/posts";
 import { Image } from "astro:assets";
 import MediumWrapper from "../wrappers/MediumWrapper.astro";
 
+const formattedPosts = sortedPosts.map((doc) => {
+  return {
+    ...doc,
+    body: doc.body.replaceAll('&nbsp;', ' ')
+  }
+})
+
 ---
 
 <MediumWrapper>
@@ -10,7 +17,7 @@ import MediumWrapper from "../wrappers/MediumWrapper.astro";
     class="swiperNews grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pb-8"
   >
     {
-      sortedPosts.map((post) => (
+      formattedPosts.map((post) => (
         <div class="newsSlide">
           <a href={post.collection + "/" + post.id} class="newsLink">
             <div class="wrapperImage">
