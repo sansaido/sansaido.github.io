@@ -71,9 +71,9 @@ const titleIcons = {
     <div
       class="bg-white rounded-2xl flex overflow-hidden md:w-3/4 mx-auto shadow-2xl h-24"
     >
-      <a
-        href={newestPost.collection}
-        class="bg-red text-white min-w-fit px-2 md:px-8 py-4 h-auto flex flex-col justify-center transition-opacity,_scale duration-200 hover:opacity-70 hover:scale-102"
+    <!-- class="bg-red text-white min-w-fit px-2 md:px-8 py-4 h-auto flex flex-col justify-center transition-opacity,_scale duration-200 hover:opacity-70 hover:scale-102" -->
+      <div       
+        class="bg-red text-white min-w-fit px-2 md:px-8 py-4 h-auto flex flex-col justify-center"
       >
         <h2>
           <div class="flex flex-col">
@@ -85,7 +85,7 @@ const titleIcons = {
             </div>
           </div>
         </h2>
-      </a>
+      </div>
       <a
         href={newestPost.collection + "/" + newestPost.id}
         class="linkNewestPost px-4 py-4 md:px-8"
