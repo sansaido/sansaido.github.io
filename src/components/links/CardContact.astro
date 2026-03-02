@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant: "red" | "clear";
+  variant: "red" | "clear" | "white";
   title: {
     en: string;
     ja: string;
@@ -17,7 +17,9 @@ const getVariantClasses = (variant: string) => {
   if (variant === "red") {
     return ["bg-radial-red", "text-white", "hover"];
   } else if (variant === "clear") {
-    return ["bg-white/40", "backdrop-blur-xl", "text-black"];
+    return ["bg-white/60", "backdrop-blur-xl", "text-black"];
+  } else if (variant === "white") {
+    return ["bg-white/100", "text-black"]
   } else {
     return [""];
   }
